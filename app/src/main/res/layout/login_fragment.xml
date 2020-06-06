@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"
+                android:visibility="visible" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/accountTypeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="casual"
+                android:gravity="center_horizontal"
+                android:text="Account Type"
+                android:textSize="20dp" />
+
+            <Switch
+                android:id="@+id/loginAccountTypeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:checked="false"
+                android:drawableLeft="@drawable/ic_teacher_icon"
+                android:drawableRight="@drawable/ic_student_icon"
+                android:gravity="center_horizontal"
+                android:switchMinWidth="100dp"
+                android:textOff="STUDENT"
+                android:textOn="ADMIN" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:gravity="center_horizontal"
+                android:text="Username"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/usernameLoginEditText"
+                android:layout_width="200dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:inputType="textPersonName" />
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/passwordTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:gravity="center_horizontal"
+                android:text="Password"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/passwordLoginEditText"
+                android:layout_width="200dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:inputType="textPassword" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="Login" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

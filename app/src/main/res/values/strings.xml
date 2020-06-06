@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MOHackathonClient</string>
+    <string-array name="teacherNames">
+        <item>Thomas Grossi</item>
+        <item>James West</item>
+        <item>Timothy Sumereau</item>
+        <item>Daniel Grzywacz</item>
+    </string-array>
+</resources>
