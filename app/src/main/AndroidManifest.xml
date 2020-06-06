@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.mort11.mohackathonclient">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".student.StudentActivity"></activity>
+        <activity android:name=".admin.testerDialogActivity"></activity>
+        <activity android:name=".admin.ViewReportActivity" />
+        <activity android:name=".student.StudentActivity" />
         <activity android:name=".admin.AdminActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

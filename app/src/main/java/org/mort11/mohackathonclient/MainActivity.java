@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -26,17 +27,14 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView loginNavigation = findViewById(R.id.loginNavigation);
         loginNavigation.setOnNavigationItemSelectedListener(loginNavListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.loginFragmentContainer, new LoginFragment()).commit();
-        try {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        if(Client.socket == null) {
             Client.connectToServer();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }else{
+            Client.closeConnection();
+            Client.connectToServer();
         }
-    }
-
-    private void connectToServer() throws IOException, UnknownHostException {
-        int SERVER_PORT = 8888;
-        Socket socket = new Socket("192.11.1.1", 8888);
-
+        Log.d("test", "Connected to server");
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener loginNavListener =

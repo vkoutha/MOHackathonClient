@@ -2,6 +2,7 @@ package org.mort11.mohackathonclient;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,17 +32,43 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    boolean success = Client.login(!accountTypeSwitch.isChecked() ? "ADMIN" : "STUDENT",
+                    Log.d("test", !accountTypeSwitch.isChecked() ? "ADMIN" : "STUDENT");
+                    Log.d("test", username.getEditableText().toString());
+                    Log.d("test", password.getEditableText().toString());
+                    System.out.println("CLICKINGGGGG");
+                    Client.login(!accountTypeSwitch.isChecked() ? "ADMIN" : "STUDENT",
                             username.getEditableText().toString(),
                             password.getEditableText().toString());
-                    if (!success) {
-                        Toast.makeText(getContext(), "Account info not found! Try again", Toast.LENGTH_LONG).show();
+                    Log.d("test", "GOT TO HEREEEE");
+                    while(!Client.serverRecievedLogin)
+                        ;
+                    if (!Client.accountFoundFromLogin) {
+                        Toast.makeText(getContext(), "Account info not found! Try again", Toast.LENGTH_SHORT).show();
+//                        Client.closeConnection();
+//                        Client.connectToServer();
+                        Log.d("test", "account info not found");
+                        Client.serverRecievedLogin = false;
+                        Client.accountFoundFromLogin = false;
+                        Client.loginJSONReceived = false;
+                        Client.loginJSON = "";
                     } else {
                         Toast.makeText(getContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
-                        String json = Client.getInputStream().readUTF();
+                        String json = Client.getLoginJSON();
+                        Log.d("test", "Received json: " + json);
+                        login(!accountTypeSwitch.isChecked() ? "ADMIN" : "STUDENT", json);
                     }
-                }catch (IOException e){
+                    Client.serverRecievedLogin = false;
+                    Client.accountFoundFromLogin = false;
+                    Client.loginJSONReceived = false;
+                    Client.loginJSON = "";
+                }catch (Exception e){
                     e.printStackTrace();
+                    Client.closeConnection();
+                    Client.connectToServer();
+                    Client.serverRecievedLogin = false;
+                    Client.accountFoundFromLogin = false;
+                    Client.loginJSONReceived = false;
+                    Client.loginJSON = "";
                 }
             }
         });
@@ -49,12 +76,17 @@ public class LoginFragment extends Fragment {
     }
 
     private void login(String accountType, String json){
+        Log.d("test", "Changing activities now!!");
         Intent intent;
         if(accountType.equals("ADMIN")){
             intent = new Intent(getActivity(), AdminActivity.class);
         }else{
             intent = new Intent(getActivity(), StudentActivity.class);
         }
+        Client.serverRecievedLogin = false;
+        Client.accountFoundFromLogin = false;
+        Client.loginJSONReceived = false;
+        Client.loginJSON = "";
         intent.putExtra("json", json);
         startActivity(intent);
     }

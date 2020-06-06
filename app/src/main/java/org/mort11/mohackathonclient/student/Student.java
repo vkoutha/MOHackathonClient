@@ -1,8 +1,9 @@
 package org.mort11.mohackathonclient.student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student {
+public class Student implements Serializable {
 
     private String fullName;
     private String username;
